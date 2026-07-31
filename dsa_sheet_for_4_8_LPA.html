@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA & Web Development Sheet | Kalawatiputra Edu</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --tag-easy-bg: #dcfce7;
+            --tag-easy-color: #166534;
+            --tag-med-bg: #fef9c3;
+            --tag-med-color: #854d0e;
+            --header-bg: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Banner Header */
+        .header-card {
+            background-color: var(--header-bg);
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .header-card h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header-card .website {
+            font-size: 14px;
+            color: #93c5fd;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .header-card .website:hover {
+            text-decoration: underline;
+        }
+
+        .header-card p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-top: 6px;
+        }
+
+        .header-card .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background-color: #334155;
+            color: #f1f5f9;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            background-color: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background-color: var(--accent-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 28px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .topic-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .topic-header {
+            background-color: #f1f5f9;
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #334155;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th, td {
+            padding: 10px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .col-check {
+            width: 40px;
+            text-align: center;
+        }
+
+        .col-title {
+            font-weight: 500;
+        }
+
+        .col-diff {
+            width: 100px;
+        }
+
+        .col-link {
+            width: 100px;
+            text-align: right;
+        }
+
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .completed-row {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .tag-easy {
+            background-color: var(--tag-easy-bg);
+            color: var(--tag-easy-color);
+        }
+
+        .tag-medium {
+            background-color: var(--tag-med-bg);
+            color: var(--tag-med-color);
+        }
+
+        .problem-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .problem-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header-card">
+        <h1>DSA & Development Sheet</h1>
+        <a href="https://www.kalawatiputra.com" target="_blank" class="website">www.kalawatiputra.com — Kalawatiputra Edu</a>
+        <p>Curated Placement Preparation Tracker for <strong>4 - 8 LPA Roles</strong></p>
+        <div class="badge-container">
+            <span class="badge">SDE</span>
+            <span class="badge">Data Engineer</span>
+            <span class="badge">Data Analyst</span>
+            <span class="badge">Frontend Engineer</span>
+            <span class="badge">Backend Developer</span>
+            <span class="badge">DevOps & Tech Support</span>
+            <span class="badge">QA / Tester</span>
+        </div>
+        <p style="margin-top: 10px; font-size: 12px; color: #94a3b8;">
+            Target Companies: Infosys, Capgemini, Accenture, Cognizant, Wipro, Deloitte, TCS, Genpact & High-Growth Startups.
+        </p>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="progress-section">
+        <div class="progress-text" id="progress-text">0 / 0 Completed (0%)</div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: DATA STRUCTURES & ALGORITHMS -->
+    <div class="section-title">1. Data Structures & Algorithms (DSA)</div>
+
+    <!-- Basic Math -->
+    <div class="topic-card">
+        <div class="topic-header">Basic Mathematics</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Count Digits & Extract Digits</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/count-the-digits-that-divide-a-number/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse Integer</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/reverse-integer/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Palindrome Number Check</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/palindrome-number/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Armstrong Number</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/armstrong-number/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">GCD & LCM (Euclidean Algorithm)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/find-greatest-common-divisor-of-array/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Factorial & Trailing Zeroes</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/factorial-trailing-zeroes/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Prime Numbers (Sieve of Eratosthenes)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/count-primes/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Arrays -->
+    <div class="topic-card">
+        <div class="topic-header">Arrays</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse an Array</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/reverse-string/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Rotate Array by K Positions</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/rotate-array/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Missing Number (1 to N)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/missing-number/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Majority Element (Moore's Voting Algo)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/majority-element/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Leaders in an Array</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Product of Array Except Self</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Prefix and Suffix Sum (Pivot Index)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/find-pivot-index/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Best Time to Buy & Sell Stock I</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Best Time to Buy & Sell Stock II</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Kadane's Algorithm (Max Subarray Sum)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/maximum-subarray/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Max Consecutive Ones</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/max-consecutive-ones/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Sort Array (Bubble, Selection, Insertion - Sort Colors)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/sort-colors/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Merge Sort Algorithm</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/sort-an-array/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Strings -->
+    <div class="topic-card">
+        <div class="topic-header">Strings</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Valid Palindrome</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/valid-palindrome/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse String</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/reverse-string/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Substrings / Longest Substring Without Repeating Chars</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse Words in a String</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Valid Anagram</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/valid-anagram/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Stack & Queue -->
+    <div class="topic-card">
+        <div class="topic-header">Stack & Queue</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse Array / String using Stack</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Stack Implementation using Queue / Array</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/implement-stack-using-queues/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Queue Implementation using Stacks</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/implement-queue-using-stacks/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Next Greater Element I</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/next-greater-element-i/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Valid Parentheses</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Linked List -->
+    <div class="topic-card">
+        <div class="topic-header">Linked List</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Reverse Linked List</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Linked List Implementation (Head, Tail, Mid Insert)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/design-linked-list/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Doubly Linked List Implementation</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/design-browser-history/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Find Middle Node of Linked List</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Detect Loop in Linked List</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Merge Two Sorted Lists</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Find Intersection Point of Two Linked Lists</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/intersection-of-two-linked-lists/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tree -->
+    <div class="topic-card">
+        <div class="topic-header">Trees (Binary Tree & BST)</div>
+        <table>
+            <tbody>
+                <!-- <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Build Binary Tree (Preorder & Inorder)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Solve ↗</a></td>
+                </tr> -->
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Inorder Traversal (Recursion)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Preorder Traversal (Recursion)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Postorder Traversal (Recursion)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Level Order Traversal (using Queue)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Invert / Mirror Binary Tree</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Same Tree Check</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/same-tree/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Left Side View & Right Side View</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Top View & Bottom View of Tree</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Lowest Common Ancestor (LCA)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank">Solve ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Check Valid Binary Search Tree (Validate BST)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">Solve ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 2: DEVELOPMENT & WEB FUNDAMENTALS -->
+    <div class="section-title">2. Web Development & Databases Fundamentals</div>
+
+    <!-- HTML & CSS Basics -->
+    <div class="topic-card">
+        <div class="topic-header">Basic HTML & CSS</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">HTML Structure, Semantic Tags & Forms</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://developer.mozilla.org/en-US/docs/Learn/HTML" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Basic CSS Styling, Box Model, Padding & Margins</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank">Docs ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FastAPI -->
+    <div class="topic-card">
+        <div class="topic-header">FastAPI (Backend Framework)</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">FastAPI Basics & CRUD Operations (GET, POST, PUT, DELETE)</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://fastapi.tiangolo.com/tutorial/first-steps/" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Database Connection (SQLAlchemy / PostgreSQL / SQLite)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Authentication & Security (JWT Token, Hash Password)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://fastapi.tiangolo.com/tutorial/security/" target="_blank">Docs ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- React Basics -->
+    <div class="topic-card">
+        <div class="topic-header">React Basics & State Management</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">React Basics, JSX & Component Structure</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://react.dev/learn" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">State Management with <code>useState</code> & <code>useEffect</code> Hooks</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://react.dev/reference/react/useState" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Form Handling & <code>onChange</code> Events</td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://react.dev/learn/responding-to-events" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Props Drilling Concept & Basic Context API (<code>useContext</code>)</td>
+                    <td class="col-diff"><span class="tag tag-medium">Medium</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://react.dev/reference/react/useContext" target="_blank">Docs ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SQL Basics -->
+    <div class="topic-card">
+        <div class="topic-header">SQL & Relational Database Basics</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">DDL & DML Basics: <code>CREATE TABLE</code>, <code>INSERT INTO</code>, <code>DELETE</code></td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://www.w3schools.com/sql/" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Queries & Filtering: <code>SELECT</code>, <code>WHERE</code>, <code>IS NULL</code> / <code>IS NOT NULL</code></td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://www.w3schools.com/sql/sql_where.asp" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Aggregation & Grouping: <code>GROUP BY</code></td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://www.w3schools.com/sql/sql_groupby.asp" target="_blank">Docs ↗</a></td>
+                </tr>
+                <tr>
+                    <td class="col-check"><input type="checkbox" onchange="updateProgress()"></td>
+                    <td class="col-title">Keys & Constraints: <code>PRIMARY KEY</code> and <code>FOREIGN KEY</code></td>
+                    <td class="col-diff"><span class="tag tag-easy">Easy</span></td>
+                    <td class="col-link"><a class="problem-link" href="https://www.w3schools.com/sql/sql_foreignkey.asp" target="_blank">Docs ↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        © Kalawatiputra Edu (www.kalawatiputra.com) — Placement Preparation Tracker
+    </footer>
+</div>
+
+<script>
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const total = checkboxes.length;
+        let checked = 0;
+
+        checkboxes.forEach((cb) => {
+            const row = cb.closest('tr');
+            if (cb.checked) {
+                checked++;
+                if (row) row.classList.add('completed-row');
+            } else {
+                if (row) row.classList.remove('completed-row');
+            }
+        });
+
+        const percent = Math.round((checked / total) * 100);
+        document.getElementById('progress-text').innerText = `${checked} / ${total} Completed (${percent}%)`;
+        document.getElementById('progress-fill').style.width = `${percent}%`;
+    }
+
+    // Initial update call
+    updateProgress();
+</script>
+
+</body>
+</html>
